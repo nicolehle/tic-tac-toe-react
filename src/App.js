@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 
 /*===============================================
@@ -8,19 +8,36 @@ import './App.css';
   ===============================================*/
 
 
+
 class Square extends React.Component {
+  state = {
+    value: null
+  };
+
+  valueClicked = () => {
+    this.setState({ value: 'X' });
+  }
+
   render() {
     return (
-      <button className="square">
-        {/* TODO */}
+      <button
+        className="square"
+        onClick={this.valueClicked}>
+        {this.state.value}
       </button>
     );
   }
 }
 
+
+
 class Board extends React.Component {
+  state = {
+    squares: Array(9).fill(null)
+  };
+
   renderSquare(i) {
-    return <Square />;
+    return <Square value={this.state.squares[i]} />;
   }
 
   render() {
@@ -48,6 +65,8 @@ class Board extends React.Component {
     );
   }
 }
+
+
 
 class Game extends React.Component {
   render() {
